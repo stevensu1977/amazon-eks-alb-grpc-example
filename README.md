@@ -93,3 +93,11 @@ Endpoint: grpc.flowq.io:443,  TLS: true
 2022/01/14 08:35:06 Response from server: Hello From the Server!
 ```
 
+
+
+
+
+### 6. Tips
+
+* ALB Ingress gRPC 健康检查代码,默认的是12, Amazon文档提到0~99, 找到另外一篇文章, https://grpc.github.io/grpc/core/md_doc_statuscodes.html, 世纪测试0,12, 或者0~16都可以
+* Golang 客户端,初始化需要使用 grpc.WithTransportCredentials(credentials.NewTLS(&tls.Config{InsecureSkipVerify: true}))) 初始化TLS才能正确调用ALB Ingress 
